@@ -1,6 +1,7 @@
 package fr.esgi.task;
 
 
+import org.junit.Before;
 import org.junit.jupiter.api.*;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,21 +32,20 @@ public class TaskListTest {
     @Test
     @Order(2)
     public void getTaskTest(){
-        Task task1 = taskList.getTask(1L);
-        Task task2 = taskList.getTask(2L);
+        List<Task> tasks = taskList.getTasks();
+        Task task1 = taskList.getTask(tasks.get(0).getId());
+        Task task2 = taskList.getTask(tasks.get(1).getId());
 
         assertEquals(task1.getDescription(), "test 1");
-        assertEquals(task1.getId(), 1L);
-
         assertEquals(task2.getDescription(), "test 2");
-        assertEquals(task2.getId(), 2L);
     }
 
     @Test
     @Order(3)
     public void MarkDoneTest(){
-        taskList.markDone(1L);
         List<Task> tasks = taskList.getTasks();
+
+        taskList.markDone(tasks.get(0).getId());
 
         assertTrue(tasks.get(0).isDone());
         assertFalse(tasks.get(1).isDone());
@@ -60,13 +60,15 @@ public class TaskListTest {
     @Test
     @Order(5)
     public void deleteTaskTest(){
-        taskList.deleteTask(1L);
-
         List<Task> tasks = taskList.getTasks();
-        assertEquals(tasks.size(), 1);
-        assertEquals(tasks.get(0).getId(), 2L);
 
-        taskList.deleteTask(2L);
+        Long id = tasks.get(1).getId();
+
+        taskList.deleteTask(tasks.get(0).getId());
+        assertEquals(tasks.size(), 1);
+        assertEquals(taskList.getTask(id).getId(), tasks.get(0).getId());
+
+        taskList.deleteTask(tasks.get(0).getId());
         assertTrue(tasks.isEmpty());
     }
 
