@@ -15,6 +15,14 @@ public class Task {
         this.done = false;
     }
 
+    public Task(String description, boolean done){
+        instanceCount++;
+
+        this.id = instanceCount;
+        this.description = description;
+        this.done = done;
+    }
+
     public Long getId() {
         return id;
     }
@@ -40,5 +48,9 @@ public class Task {
         return  this.id + " | " +
                 this.description + " | " +
                 (this.done ? "Terminée" : "En cours");
+    }
+
+    public static void resetInstanceCount(){
+        instanceCount = 0;
     }
 }

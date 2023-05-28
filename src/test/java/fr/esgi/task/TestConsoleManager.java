@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * !!!!!!!!!
+ * Classe à la base créée pour les tests de taskManager,
+ * Mais j'ai utilisé les mocks à la place pour me coller à l'exemple vu en cours
+ * !!!!!!!!
+ */
 public class TestConsoleManager implements IConsoleManager{
     private List<String> output;
     private Queue<String> input;
@@ -43,4 +49,5 @@ public class TestConsoleManager implements IConsoleManager{
     public List<String> getOutput() {
         return this.output;
     }
+
 }

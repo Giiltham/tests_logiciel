@@ -11,6 +11,11 @@ public class TaskManager {
         this.taskList = new TaskList();
     }
 
+    public TaskManager(IConsoleManager consoleManager, TaskList taskList){
+        this.consoleManager = consoleManager;
+        this.taskList = taskList;
+    }
+
     private void ajouterTache(){
         String commentaire = "";
 
@@ -25,7 +30,6 @@ public class TaskManager {
 
         taskList.addTask(new Task(commentaire));
         consoleManager.write("Tâche ajoutée !");
-        consoleManager.readLine();
     }
 
     private void terminerTache(){
@@ -58,7 +62,6 @@ public class TaskManager {
         }
 
         consoleManager.write("Tâche terminée !");
-        consoleManager.readLine();
     }
 
     private void supprimerTache(){
@@ -68,7 +71,7 @@ public class TaskManager {
         }
 
         consoleManager.writeLine(taskList.toString());
-        consoleManager.writeLine("Entrez l'ID de la tâche à supprimer");
+        consoleManager.write("Entrez l'ID de la tâche à supprimer : ");
 
         while(true){
             try {
@@ -82,7 +85,6 @@ public class TaskManager {
         }
 
         consoleManager.write("Tâche supprimée !");
-        consoleManager.readLine();
     }
 
     private void listerTaches(){
@@ -92,7 +94,6 @@ public class TaskManager {
         }
 
         consoleManager.writeLine(taskList.toString());
-        consoleManager.readLine();
     }
 
     public void run(){

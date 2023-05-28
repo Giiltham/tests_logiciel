@@ -14,7 +14,6 @@ public class TaskListTest {
     @Test
     @Order(1)
     public void addTaskTest(){
-
         Task task1 = new Task("test 1");
         Task task2 = new Task("test 2");
 
